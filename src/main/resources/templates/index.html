@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <!-- Vue.js CDN 추가 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+
+    <!-- index.html 물품 등록 버튼을 클릭하였을 때 해당 스크립트로 이동 -->
+    <script src="./js/index.js"></script>
+
+    <!-- 카카오 주소 API 조회 -->
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=4e21750c2b8367ad9b5d31de6b0e8030"></script>
+</head>
+<body>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                productModalVisible: false,
+                addressDialogVisible: false,
+                selectedImage: '',
+                title: '',
+                content: '',
+                addressInput: '',
+                addresses: [],
+            },
+
+            methods: {
+                showProductModal() {
+                    this.productModalVisible = true;
+                },
+
+                closeProductModal() {
+                    this.productModalVisible = false;
+                },
+
+                handleImageChange(event) {
+                    const file = event.target.files[0];
+
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (e) => {
+                            this.selectedImage = e.target.result;
+                        };
+
+                        reader.readAsDataURL(file);
+                    }
+                },
+
+                showAddressDialog() {
+                    this.addressDialogVisible = true;
+                },
+
+                searchAddress() {
+                    // Implement your address search logic here
+                },
+
+                setSelectedAddress(address) {
+                    this.selectedAddress = address;
+                    this.addressDialogVisible = false;
+                },
+            }
+        });
+    </script>
+</body>
+</html>

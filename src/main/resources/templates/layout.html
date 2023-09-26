@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- jQuery 라이브러리 가져오기 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Vue.js 라이브러리 가져오기 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+
+    <!-- index.html 물품 등록 버튼을 클릭하였을 때 해당 스크립트로 이동 -->
+    <script src="./js/index.js"></script>
+
+    <!-- 카카오 주소 API 조회 -->
+    <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=4e21750c2b8367ad9b5d31de6b0e8030"></script>
+
+    <!-- 부트스트랩, 제이쿼리 라이브러리 가져오기 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js" integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa" crossorigin="anonymous"></script>
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<!-- 기본 레이아웃 템플릿 안에 삽입될 내용 run -->
+<th:block layout:fragment="content" style="padding-top: 30px; padding-left: 30px;"></th:block>
+<!-- 기본 레이아웃 템플릿 안에 삽입될 내용 end -->
+</body>
+</html>
