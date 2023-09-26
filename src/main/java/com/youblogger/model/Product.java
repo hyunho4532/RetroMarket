@@ -1,19 +1,34 @@
 package com.youblogger.model;
 
-public class ItemDTO {
+import javax.persistence.*;
+
+@Entity
+@Table(name = "product_table")
+public class Product {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private String id;
+
+    @Column(length = 1000)
     private String address;  // 주소
-    private String product;  // 물품 이름
+
+    @Column(length = 1000)
+    private String product_name;  // 물품 이름
+
+    @Column(length = 1500)
     private String reason;   // 판매 이유
-    private double price;    // 가격
 
-    // 생성자, 게터, 세터 등 필요한 메서드를 추가할 수 있음
+    @Column(length = 20)
+    private int price;    // 가격
 
-    public ItemDTO() {
+    public Product() {
+
     }
 
-    public ItemDTO(String address, String product, String reason, double price) {
+    public Product(String address, String product_name, String reason, int price) {
         this.address = address;
-        this.product = product;
+        this.product_name = product_name;
         this.reason = reason;
         this.price = price;
     }
@@ -28,11 +43,11 @@ public class ItemDTO {
     }
 
     public String getProduct() {
-        return product;
+        return product_name;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
+    public void setProduct(String product_name) {
+        this.product_name = product_name;
     }
 
     public String getReason() {
@@ -47,7 +62,7 @@ public class ItemDTO {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 
@@ -56,7 +71,7 @@ public class ItemDTO {
     public String toString() {
         return "ItemDTO{" +
                 "address='" + address + '\'' +
-                ", product='" + product + '\'' +
+                ", product_name='" + product_name + '\'' +
                 ", reason='" + reason + '\'' +
                 ", price=" + price +
                 '}';

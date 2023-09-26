@@ -50,11 +50,17 @@ export default {
   },
   methods: {
     registerItem() {
+
+      const address = document.getElementById('address').value;
+      const product = document.getElementById('product').value;
+      const reason = document.getElementById('reason').value;
+      const price = document.getElementById('price').value;
+
       const itemData = {
-        address: this.address,
-        product: this.product,
-        reason: this.reason,
-        price: this.price,
+        address,
+        product,
+        reason,
+        price,
       }
 
       axios.post('http://localhost:8081/api/registerItem', itemData, {
