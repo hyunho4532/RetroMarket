@@ -2,7 +2,6 @@
   <div>
     <button @click="openModal">모달 열기</button>
     <ModalDialog ref="modalDialog">
-
       <button @click="closeModal">닫기</button>
     </ModalDialog>
   </div>
