@@ -5,7 +5,7 @@ import '@popperjs/core/dist/umd/popper.min.js';
 import router from './router';
 
 import { createApp } from 'vue';
-import App from './views/Home.vue';
+import App from './views/Main.vue';
 
 const app = createApp(App);
 
