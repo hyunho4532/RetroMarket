@@ -11,7 +11,7 @@
             <a class="nav-link active" aria-current="page" href="#">홈</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">중고 거래</a>
+            <router-link to="/used/trade">중고 거래</router-link>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">알바 구함 (알구)</a>

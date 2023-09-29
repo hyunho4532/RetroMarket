@@ -19,6 +19,10 @@
     <ModalDialog ref="modalDialog">
       <button @click="closeModal">닫기</button>
     </ModalDialog>
+
+    <router-view>
+
+    </router-view>
   </div>
 </template>
 
