@@ -7,7 +7,7 @@
 <br>
 
 ### Frontend
-> Vue.js
+> Vue.js, Vue-router, Vue-Dialog
 
 <br>
 
