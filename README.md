@@ -26,5 +26,10 @@
 
 <br>
 
+### Animation
+> GSAP
+
+<br>
+
 ### Social Login (Google Login, Kakao Login)
 > Spring Security, OAuth2
