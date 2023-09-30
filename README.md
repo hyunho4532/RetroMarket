@@ -1,20 +1,25 @@
 # RetroMarket
 중고 거래 판매 애플리케이션 (Spring X Vue)
 
-# Tool
+### Tool
 > intellij
 
 <br>
 
-# Frontend
+### Frontend
 > Vue.js
 
 <br>
 
-# Backend
-> Spring
+### Backend
+> Spring, Spring Boot
 
 <br>
 
-# Server
+### Server
 > Firebase
+
+<br>
+
+### Social Login (Google Login, Kakao Login)
+> Spring Security, OAuth2
