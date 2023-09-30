@@ -21,5 +21,10 @@
 
 <br>
 
+### Database
+> MySQL 
+
+<br>
+
 ### Social Login (Google Login, Kakao Login)
 > Spring Security, OAuth2
