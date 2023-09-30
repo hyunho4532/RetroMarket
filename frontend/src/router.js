@@ -11,6 +11,11 @@ const routes = [
         name: 'UsedTrade',
         component: () => import('@/views/UsedTrade.vue'),
     },
+    {
+        path: "/register",
+        name: 'Register',
+        component: () => import('@/views/register/Register.vue'),
+    }
 ];
 
 const router = createRouter({

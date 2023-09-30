@@ -26,6 +26,18 @@
             <input class="form-control me-2" type="search" placeholder="검색어를 입력하세요" aria-label="Search" id="input-search">
             <button class="btn btn-outline-success" type="submit">검색 완료</button>
           </form>
+
+          <ul class="navbar-nav">
+            <li class="nav-item" style="background-color: #fefefe">
+              <router-link class="nav-link" to="/register" style="font-size: 16px; font-weight: bold">회원 가입</router-link>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav">
+            <li class="nav-item" style="background-color: #fefefe">
+              <span class="nav-link" style="font-size: 16px; font-weight: bold">{{ userEmail }}</span>
+            </li>
+          </ul>
         </div>
       </div>
     </nav>
@@ -33,8 +45,29 @@
   </div>
 </template>
 <script>
+
+import { onAuthStateChanged, getAuth } from 'firebase/auth';
+
 export default {
   name: 'MainPage',
+
+  data() {
+    return {
+      userEmail: "이메일을 입력해주세요"
+    };
+  },
+
+  mounted() {
+    const auth = getAuth();
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        this.userEmail = user.email;
+      } else {
+        this.userEmail = "회원가입을 진행해주세요";
+      }
+    });
+  }
 }
 </script>
 

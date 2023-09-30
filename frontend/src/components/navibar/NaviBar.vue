@@ -8,7 +8,7 @@
       <div class="collapse navbar-collapse" id="navbarNav" style="padding-left: 30px;">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">홈</a>
+            <router-link to="/">홈</router-link>
           </li>
           <li class="nav-item">
             <router-link to="/used/trade">중고 거래</router-link>
@@ -16,6 +16,10 @@
           <li class="nav-item">
             <a class="nav-link" href="#">알바 구함 (알구)</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">소통 게시판</a>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="#">소통 게시판</a>
           </li>
@@ -33,3 +37,5 @@
 <style lang="scss">
 @import './css/base.scss';
 </style>
+<script setup>
+</script>
