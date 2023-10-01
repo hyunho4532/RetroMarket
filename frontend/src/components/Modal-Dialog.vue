@@ -26,6 +26,11 @@
               <label for="exampleFormControlInput1" class="form-label">가격</label>
               <input type="text" class="form-control" name="price" id="price">
             </div>
+
+            <div class="mb-3" style="margin-top: 40px;">
+              <label for="exampleFormControlInput1" class="form-label">현재 날짜</label>
+              <input type="text" class="form-control" v-model="currentTime" name="todayDate" id="todayDate" readonly="readonly">
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="closeModal">닫기</button>
@@ -44,8 +49,18 @@ export default {
   name: 'ModalDialog',
 
   data() {
+    function getCurrentTime() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, '0');
+      const day = String(now.getDate()).padStart(2, '0');
+
+      return `${year}-${month}-${day}`;
+    }
+
     return {
-      showModal: false
+      showModal: false,
+      currentTime: getCurrentTime(),
     };
   },
   methods: {
@@ -55,12 +70,14 @@ export default {
       const product = document.getElementById('product').value;
       const reason = document.getElementById('reason').value;
       const price = document.getElementById('price').value;
+      const todayDate = document.getElementById('todayDate').value;
 
       const itemData = {
         address,
         product,
         reason,
         price,
+        todayDate,
       }
 
       axios.post('http://localhost:8081/api/registerItem', itemData, {

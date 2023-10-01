@@ -1,6 +1,7 @@
 package com.youblogger.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Product {
@@ -21,16 +22,21 @@ public class Product {
     @Column(length = 20)
     private int price;    // 가격
 
+    @Column(length = 100)
+    private String today_date;
+
     public Product() {
 
     }
 
-    public Product(String address, String product_name, String reason, int price) {
+    public Product(String address, String product_name, String reason, int price, String today_date) {
         this.address = address;
         this.product_name = product_name;
         this.reason = reason;
         this.price = price;
+        this.today_date = today_date;
     }
+
 
     // 게터와 세터 메서드
     public String getAddress() {
@@ -65,6 +71,14 @@ public class Product {
         this.price = price;
     }
 
+    public String getTodayDate() {
+        return today_date;
+    }
+
+    public void setTodayDate(String today_date) {
+        this.today_date = today_date;
+    }
+
     // toString 메서드 (디버깅 등에 유용)
     @Override
     public String toString() {
@@ -72,7 +86,8 @@ public class Product {
                 "address='" + address + '\'' +
                 ", product_name='" + product_name + '\'' +
                 ", reason='" + reason + '\'' +
-                ", price=" + price +
+                ", price='" + price + '\'' +
+                ", today_date=" + today_date +
                 '}';
     }
 }
