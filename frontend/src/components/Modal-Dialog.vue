@@ -8,8 +8,8 @@
           </div>
           <div class="modal-body">
             <div class="mb-3">
-              <label for="exampleFormControlInput1" class="form-label">주소 입력</label>
-              <input type="email" name="address"  class="form-control" id="address" placeholder="ex) 서울시 강동구">
+              <KaKaoMap @address-updated="onAddressUpdated" />
+              <input type="email" name="address"  class="form-control" id="address" :value="address" placeholder="ex) 서울시 강동구">
             </div>
 
             <div class="mb-3" style="margin-top: 40px;">
@@ -43,10 +43,14 @@
 
 <script>
 import axios from "axios";
+import KaKaoMap from "@/components/api/KaKaoMap.vue";
 
 export default {
 
   name: 'ModalDialog',
+  components: {
+    KaKaoMap,
+  },
 
   data() {
     function getCurrentTime() {
@@ -61,8 +65,11 @@ export default {
     return {
       showModal: false,
       currentTime: getCurrentTime(),
+      map: null,
+      address: "",
     };
   },
+
   methods: {
     registerItem() {
 
@@ -97,6 +104,12 @@ export default {
     },
     closeModal() {
       this.showModal = false;
+    },
+
+    onAddressUpdated(address) {
+      this.address = address;
+
+      console.log(this.address);
     }
   }
 };
@@ -105,16 +118,15 @@ export default {
 <style scoped>
 .modal {
   display: block;
-  position: fixed;
+  justify-content: center;
   z-index: 1;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
   overflow: auto;
   background-color: rgb(0,0,0);
   background-color: rgba(0,0,0,0.4);
   padding-top: 60px;
+  padding-right: 400px;
 }
 
 .modal-content {
@@ -122,7 +134,7 @@ export default {
   margin: 5% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 900px;
 }
 
 .close {

@@ -8,7 +8,7 @@
       <button class="btn btn-primary" @click="searchProducts" style="margin-left: 16px; height: 35px;">검색</button>
     </div>
 
-    <CardBody :products="searchResults"></CardBody>
+    <CardBody :products="searchResults" @open-chat="openChatModal"></CardBody>
 
     <button type="button" class="btn btn-primary" id="product-insert-button" @click="openModal">물품 등록하기</button>
     <ModalDialog ref="modalDialog">
@@ -60,7 +60,11 @@ export default {
           .catch(error => {
             console.error(error);
           });
-    }
+    },
+
+    openChatModal(roomId) {
+      this.$refs.chatDialog.openChatModal(roomId);
+    },
   }
 }
 </script>
