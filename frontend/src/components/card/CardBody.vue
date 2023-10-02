@@ -10,12 +10,12 @@
 
       <div>
         <p class="card-text" style="margin-top: 20px; text-align: end; margin-right: 10px; font-size: 18px;">상품 등록 날짜: {{ item.todayDate }}</p>
-        <p style="text-align: end; margin-right: 10px; color: royalblue;" @click="openChatModal">채팅하기</p>
+        <p style="text-align: end; margin-right: 10px; color: royalblue;" @click="openChatModal(item.roomId)">채팅하기</p>
       </div>
     </div>
   </div>
 
-  <ChatDialog ref="chatDialog">
+  <ChatDialog ref="chatDialog" @joinRoom="joinChatRoom">
     <button @click="closeChatModal">닫기</button>
   </ChatDialog>
 </template>
@@ -25,6 +25,7 @@ import axios from 'axios';
 import ChatDialog from "@/components/chat/Chat-Dialog.vue";
 
 export default {
+
   data() {
     return {
       cardData: '',
@@ -39,17 +40,22 @@ export default {
     products: {
       type: Array,
       required: true,
-    }
+    },
   },
 
   methods: {
-    openChatModal() {
-      this.$refs.chatDialog.openChatModal();
+    openChatModal(productId) {
+      const roomId = `room_${productId}`;
+      this.$refs.chatDialog.openChatModal(roomId);
     },
 
     closeChatModal() {
       this.$refs.chatDialog.closeChatModal();
     },
+
+    joinChatRoom(roomId) {
+      this.$emit('joinRoom', roomId);
+    }
   },
 
   computed: {
