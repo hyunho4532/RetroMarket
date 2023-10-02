@@ -9,7 +9,7 @@
           <div class="modal-body">
             <div class="mb-3">
               <KaKaoMap @address-updated="onAddressUpdated" />
-              <input type="email" name="address"  class="form-control" id="address" :value="address" placeholder="ex) 서울시 강동구">
+              <input type="email" name="address"  class="form-control" id="address" :value="address" placeholder="ex) 서울시 강동구" readonly="readonly">
             </div>
 
             <div class="mb-3" style="margin-top: 40px;">
