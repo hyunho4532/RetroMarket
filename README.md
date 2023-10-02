@@ -21,6 +21,11 @@
 
 <br>
 
+### Chatting Service
+> Node.js, Socket.io
+
+<br>
+
 ### Database
 > MySQL 
 
