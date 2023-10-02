@@ -4,10 +4,15 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">중고 채팅방</h5>
+          <input v-model="messageInput" @keyup.enter="sendMessage" placeholder="메시지 입력" style="margin-left: 12px;" />
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="closeChatModal"></button>
         </div>
         <div class="modal-body">
-
+          <div class="messages">
+            <div v-for="(message, index) in messages" :key="index">
+              {{ message }}
+            </div>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="closeChatModal">닫기</button>
@@ -18,14 +23,25 @@
 </template>
 
 <script>
+import io from 'socket.io-client';
+
 export default {
 
   name: 'ChatDialog',
 
   data() {
     return {
+      messages: [],
+      messageInput: '',
+      socket: io('http://localhost:3000'),
       showModal: false,
     }
+  },
+
+  mounted() {
+    this.socket.on('chatMessage', (message) => {
+      this.messages.push(message);
+    });
   },
 
   methods: {
@@ -35,6 +51,13 @@ export default {
 
     closeChatModal() {
       this.showModal = false;
+    },
+
+    sendMessage() {
+      if (this.messageInput) {
+        this.socket.emit('chatMessage', this.messageInput);
+        this.messageInput = '';
+      }
     }
   }
 }
