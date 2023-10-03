@@ -27,6 +27,38 @@ export default {
     }
   },
   methods: {
+
+    initializeMap() {
+      const container = document.getElementById("map");
+      const options = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 5,
+      };
+
+      this.map = new kakao.maps.Map(container, options);
+
+      this.marker = new kakao.maps.Marker({
+        position: new kakao.maps.LatLng(0, 0),
+      });
+
+      this.marker.setMap(this.map);
+
+      this.updateMarkerPosition();
+    },
+
+    updateMarkerPosition() {
+      const geocoder = new kakao.map.services.Geocoder();
+      geocoder.addressSearch(this.addressValue, (result, status) => {
+        if (status === kakao.maps.services.Status.OK) {
+          const position = new kakao.maps.LatLng(result[0].y, result[0].x);
+          this.marker.setPosition(position);
+          this.map.panTo(position);
+        } else {
+          console.error("주소를 좌표로 변환하는 중 오류 발생: ", status);
+        }
+      });
+    },
+
     initMap() {
       const container = document.getElementById("map");
       const options = {
