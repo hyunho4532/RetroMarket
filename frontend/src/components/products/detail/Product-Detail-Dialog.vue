@@ -36,22 +36,6 @@ export default {
   },
 
   methods: {
-    openProductDetailModal(address) {
-      this.addressValue = address;
-      this.showModal = true
-
-      if (window.kakao && window.kakao.maps) {
-        this.initMap();
-      } else {
-        const script = document.createElement("script");
-        /* global kakao */
-        script.onload = () => kakao.maps.load(this.initMap);
-        script.src =
-            "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=915cffed372954b7b44804ed422b9cf0";
-        document.head.appendChild(script);
-      }
-    },
-
     closeProductDetailModal() {
       this.showModal = false
     },
@@ -63,7 +47,50 @@ export default {
         level: 5,
       };
 
-      this.map = new kakao.maps.Map(container, options);
+      if (window.kakao && window.kakao.maps) {
+        this.map = new kakao.maps.Map(container, options);
+      } else {
+        const script = document.createElement("script");
+        script.onload = () => {
+          this.map = new kakao.maps.Map(container, options);
+        };
+        script.src = "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=915cffed372954b7b44804ed422b9cf0&libraries=services";
+        document.head.appendChild(script);
+      }
+
+      const geocoder = new kakao.maps.services.Geocoder();
+
+      geocoder.addressSearch(this.addressValue, (result, status) => {
+        if (status === window.kakao.maps.services.Status.OK) {
+          const position = new window.kakao.maps.LatLng(result[0].y, result[0].x);
+
+          const marker = new window.kakao.maps.Marker({
+            position: position,
+          });
+
+          marker.setMap(this.map);
+
+          this.map.panTo(position);
+        } else {
+          console.error("주소를 좌표로 변환하는 중 오류 발생: ", status);
+        }
+      });
+    },
+
+    openProductDetailModal(address) {
+      this.addressValue = address;
+      this.showModal = true
+
+      if (window.kakao && window.kakao.maps) {
+        this.initMap();
+      } else {
+        const script = document.createElement("script");
+        /* global kakao */
+        script.onload = () => kakao.maps.load(this.initMap);
+        script.src =
+            "//dapi.kakao.com/v2/maps/sdk.js?autoload=false&appkey=915cffed372954b7b44804ed422b9cf0&libraries=services";
+        document.head.appendChild(script);
+      }
     },
   }
 }

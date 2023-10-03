@@ -27,25 +27,6 @@ export default {
     }
   },
   methods: {
-
-    initializeMap() {
-      const container = document.getElementById("map");
-      const options = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667),
-        level: 5,
-      };
-
-      this.map = new kakao.maps.Map(container, options);
-
-      this.marker = new kakao.maps.Marker({
-        position: new kakao.maps.LatLng(0, 0),
-      });
-
-      this.marker.setMap(this.map);
-
-      this.updateMarkerPosition();
-    },
-
     updateMarkerPosition() {
       const geocoder = new kakao.map.services.Geocoder();
       geocoder.addressSearch(this.addressValue, (result, status) => {
