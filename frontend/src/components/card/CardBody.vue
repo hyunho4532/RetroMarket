@@ -15,7 +15,11 @@
 
       <div>
         <p class="card-text" style="margin-top: 20px; text-align: end; margin-right: 10px; font-size: 18px;">상품 등록 날짜: {{ item.todayDate }}</p>
-        <p style="text-align: end; margin-right: 10px; color: royalblue;" @click="openChatModal(item.roomId)">채팅하기</p>
+        <div style="display: flex; justify-items: end; justify-content: end; margin-bottom: 10px;">
+          <button style="color: black; border: none; background: none;" @click="incrementInterest(item.id)">관심</button>
+          <p class="card-text" v-text="getInterestValue(item.address)" style="text-align: end; margin-right: 10px; margin-left: 10px;"></p>
+        </div>
+        <p style="text-align: end; margin-right: 10px; color: royalblue;" @click="openChatModal(item.address)">채팅하기</p>
       </div>
     </div>
   </div>
@@ -38,6 +42,7 @@ export default {
   data() {
     return {
       cardData: [],
+      interestValues: {},
     };
   },
   components: {
@@ -68,6 +73,19 @@ export default {
 
     closeProductDetailModal() {
       this.$refs.productDetailDialog.closeProductDetailModal();
+    },
+
+    incrementInterest(cardId) {
+      if (cardId in this.interestValues) {
+        this.interestValues[cardId]++;
+      } else {
+        this.interestValues[cardId] = 1;
+      }
+    },
+
+    getInterestValue(address) {
+      console.log(address);
+      return this.interestValues[address] || 0;
     }
   },
   computed: {

@@ -65,7 +65,7 @@ export default {
     openChatModal(roomId) {
       this.$refs.chatDialog.openChatModal(roomId);
     },
-  }
+  },
 }
 </script>
 

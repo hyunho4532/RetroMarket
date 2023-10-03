@@ -72,7 +72,6 @@ export default {
 
   methods: {
     registerItem() {
-
       const address = document.getElementById('address').value;
       const product = document.getElementById('product').value;
       const reason = document.getElementById('reason').value;
