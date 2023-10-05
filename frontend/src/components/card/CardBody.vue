@@ -22,7 +22,7 @@
         </div>
 
         <div style="display: flex; justify-content: end; text-align: end">
-          <p style="text-align: end; margin-right: 10px; color: royalblue;" @click="openChatModal(item.address)">채팅하기</p>
+          <p style="text-align: end; margin-right: 10px; color: royalblue;" @click="openChatModal(item.id)">채팅하기</p>
           <p style="text-align: end; margin-right: 10px; color: red;" @click="deleteChatModal(item.id)">삭제</p>
         </div>
       </div>
@@ -40,7 +40,7 @@
 
 <script>
 import axios from 'axios';
-import ChatDialog from "@/components/chat/Chat-Dialog.vue";
+import ChatDialog from "@/components/chat/dialog/Chat-Dialog.vue";
 import ProductDetailDialog from "@/components/products/detail/Product-Detail-Dialog.vue";
 
 export default {
