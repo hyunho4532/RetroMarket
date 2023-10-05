@@ -7,9 +7,14 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="closeModal"></button>
           </div>
           <div class="modal-body">
+
             <div class="mb-3">
               <KaKaoMap @address-updated="onAddressUpdated" />
               <input type="email" name="address"  class="form-control" id="address" :value="address" placeholder="ex) 서울시 강동구" readonly="readonly">
+            </div>
+
+            <div class="mb-3">
+              <input type="text" name="id"  class="form-control" id="id">
             </div>
 
             <div class="mb-3" style="margin-top: 40px;">
@@ -33,7 +38,7 @@
               </select>
 
               <div class="mb-3" style="margin-top: 40px;">
-                <input type="text" name="reason" class="form-control" id="category" v-model="selecetedCategory" readonly="readonly">
+                <input type="text" name="reason" class="form-control" id="category" v-model="selectedCategory" readonly="readonly">
               </div>
             </div>
 
@@ -93,6 +98,7 @@ export default {
 
   methods: {
     registerItem() {
+      const id = document.getElementById('id').value;
       const address = document.getElementById('address').value;
       const product = document.getElementById('product').value;
       const category = document.getElementById('category').value;
@@ -101,6 +107,7 @@ export default {
       const todayDate = document.getElementById('todayDate').value;
 
       const itemData = {
+        id,
         address,
         product,
         category,

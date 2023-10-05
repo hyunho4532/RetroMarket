@@ -20,7 +20,11 @@
           <button style="color: black; border: none; background: none;" @click="incrementInterest(item.id)">관심</button>
           <p class="card-text" v-text="getInterestValue(item.address)" style="text-align: end; margin-right: 10px; margin-left: 10px;"></p>
         </div>
-        <p style="text-align: end; margin-right: 10px; color: royalblue;" @click="openChatModal(item.address)">채팅하기</p>
+
+        <div style="display: flex; justify-content: end; text-align: end">
+          <p style="text-align: end; margin-right: 10px; color: royalblue;" @click="openChatModal(item.address)">채팅하기</p>
+          <p style="text-align: end; margin-right: 10px; color: red;" @click="deleteChatModal(item.id)">삭제</p>
+        </div>
       </div>
     </div>
   </div>
@@ -61,9 +65,29 @@ export default {
       const roomId = `room_${productId}`;
       this.$refs.chatDialog.openChatModal(roomId);
     },
+
+    deleteChatModal(itemId) {
+      console.log(itemId);
+
+      // Step 1: Send delete request
+      axios.delete(`http://localhost:8081/api/deleteChat/${itemId}`, {
+        withCredentials: true
+      })
+          .then(response => {
+            console.log(`Chat with Address ${itemId} deleted successfully!`, response);
+
+            // Step 2: Update data (remove the deleted chat from cardData)
+            this.cardData = this.cardData.filter(item => item.id !== itemId);
+          })
+          .catch(error => {
+            console.error(error);
+          });
+    },
+
     closeChatModal() {
       this.$refs.chatDialog.closeChatModal();
     },
+
     joinChatRoom(roomId) {
       this.$emit('joinRoom', roomId);
     },

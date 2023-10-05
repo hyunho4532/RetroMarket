@@ -20,7 +20,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public List<Product> findProductByAddress(String address) {
-        return productRepository.findByAddress(address);
+    public void deleteChat(Long id) {
+        productRepository.deleteById(id);
     }
 }

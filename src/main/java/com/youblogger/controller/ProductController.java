@@ -26,9 +26,4 @@ public class ProductController {
     public List<Product> getData() {
         return productService.getAllProducts();
     }
-
-    @PostMapping("/products")
-    public List<Product> findProductByAddress(@RequestParam String address) {
-        return productService.findProductByAddress(address);
-    }
 }

@@ -7,7 +7,6 @@ import java.util.Date;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(length = 1000)
@@ -40,6 +39,13 @@ public class Product {
         this.today_date = today_date;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     // 게터와 세터 메서드
     public String getAddress() {
