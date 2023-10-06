@@ -7,7 +7,7 @@
 <br>
 
 ### Frontend
-> Vue.js, Vue-router, Vue-Dialog
+> Vue.js
 
 <br>
 
@@ -28,6 +28,11 @@
 
 ### Database
 > MySQL 
+
+<br>
+
+### Library
+> Vue-router, Vue-Dialog, VueX, Axios
 
 <br>
 
