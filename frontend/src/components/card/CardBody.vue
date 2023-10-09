@@ -6,9 +6,9 @@
         class="card"
         style="width: 26rem; height: 30rem; margin-top: 30px; margin-left: 30px; margin-bottom: 20px;"
     >
-      <div class="card-body" @click="openProductDetailModal(item.address)">
-        <h5 class="card-title" style="font-size: 16px; color: royalblue;">{{ item.status }}</h5>
-        <h5 class="card-title" style="margin-top: 38px;">주소: {{ item.address }}</h5>
+      <div class="card-body" @click="openProductDetailModal(item.address, item.id)">
+        <h5 class="card-title" style="color: royalblue; font-size: 18px;">{{ item.product_status }}</h5>
+        <h5 class="card-title" style="margin-top: 40px;">주소: {{ item.address }}</h5>
         <h6 class="card-subtitle mb-2 text-body-secondary" style="margin-top: 40px;">상품: {{ item.product }}</h6>
         <img v-if="item.imageUrl" :src="item.imageUrl" alt="Product Image" style="width: 120px; height: auto; margin-top: 10px">
         <h6 class="card-subtitle mb-2 text-body-secondary" style="margin-top: 12px;">카테고리: {{ item.category }}</h6>
@@ -31,7 +31,7 @@
     </div>
   </div>
 
-  <ProductDetailDialog ref="productDetailDialog" @mark-as-sold="markItemAsSold" :address="cardData.address">
+  <ProductDetailDialog ref="productDetailDialog" @mark-as-sold="markItemAsSold" :address="cardData.address" :itemid="cardData.id">
     <button @click="closeProductDetailModal">닫기</button>
   </ProductDetailDialog>
 
@@ -113,8 +113,8 @@ export default {
       this.$emit('joinRoom', roomId);
     },
 
-    openProductDetailModal(address) {
-      this.$refs.productDetailDialog.openProductDetailModal(address);
+    openProductDetailModal(address, itemId) {
+      this.$refs.productDetailDialog.openProductDetailModal(address, itemId);
     },
 
     closeProductDetailModal() {
@@ -156,18 +156,10 @@ export default {
     },
   },
   mounted() {
-
-    const savedData = localStorage.getItem('cardData');
-
-    if (savedData) {
-      this.cardData = JSON.parse(savedData);
-    }
-
     axios
         .post('http://localhost:8081/data', {}, { withCredentials: true })
         .then(response => {
           this.cardData = response.data;
-          this.saveDataToLocalStorage();
         })
         .catch(error => {
           console.log(error);

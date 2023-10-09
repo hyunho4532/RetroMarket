@@ -25,6 +25,9 @@ public class Product {
     private String product_image;
 
     @Column(length = 20)
+    private String product_status;
+
+    @Column(length = 20)
     private int price;    // 가격
 
     @Column(length = 100)
@@ -89,6 +92,14 @@ public class Product {
 
     public void setProduct_image(String product_image) {
         this.product_image = product_image;
+    }
+
+    public String getProduct_status() {
+        return product_status;
+    }
+
+    public void setProduct_status(String product_status) {
+        this.product_status = product_status;
     }
 
     public double getPrice() {

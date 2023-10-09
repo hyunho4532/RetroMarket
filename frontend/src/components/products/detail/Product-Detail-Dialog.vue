@@ -6,14 +6,15 @@
           <h5 class="modal-title">상세 정보</h5>
         </div>
         <div class="modal-body">
-          <div>{{ addressValue }}</div>
+          <div style="margin-top: 8px;">주문 번호: {{ idValue }}</div>
+          <div style="margin-top: 20px;">주소: {{ addressValue }}</div>
           <div id="map" style="width: 800px; height: 400px; margin-top: 30px;">
 
           </div>
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" @click="markAsSold">거래 완료</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="completeOrder(idValue)">닫기</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="closeProductDetailModal">닫기</button>
         </div>
       </div>
@@ -22,11 +23,14 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
       showModal: false,
       addressValue: '',
+      idValue: '',
       map: null,
       marker: null,
     }
@@ -78,9 +82,13 @@ export default {
       });
     },
 
-    openProductDetailModal(address) {
+    openProductDetailModal(address, itemId) {
       this.addressValue = address;
+      this.idValue = itemId;
       this.showModal = true
+
+      console.log(address);
+      console.log(itemId);
 
       if (window.kakao && window.kakao.maps) {
         this.initMap();
@@ -94,9 +102,15 @@ export default {
       }
     },
 
-    markAsSold() {
-      this.$emit('mark-as-sold', this.addressValue);
-      this.closeProductDetailModal();
+    completeOrder(productId) {
+      axios.put(`http://localhost:8081/data/product/${productId}`)
+          .then(response => {
+            console.log('업데이트 완료');
+            this.closeProductDetailModal();
+          })
+          .catch(error => {
+            console.log(`전송 중 ${error}`);
+          });
     }
   }
 }

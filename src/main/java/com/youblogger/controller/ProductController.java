@@ -3,12 +3,8 @@ package com.youblogger.controller;
 import com.youblogger.model.Product;
 import com.youblogger.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +21,18 @@ public class ProductController {
     @PostMapping("/data")
     public List<Product> getData() {
         return productService.getAllProducts();
+    }
+
+    @PutMapping("/data/product/{productId}")
+    public ResponseEntity<Product> completeOrder(@PathVariable Long productId) {
+        Product product = productService.findById(productId);
+
+        if (product != null) {
+            product.setProduct_status("판매 완료"); // Assuming the status field name is "productStatus"
+            productService.save(product); // Save the updated product
+            return ResponseEntity.ok(product);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

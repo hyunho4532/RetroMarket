@@ -53,6 +53,22 @@
               <img v-if="imageUrl" :src="imageUrl" alt="Uploaded Image" style="max-width: 300px; margin-top: 10px;" />
             </div>
 
+            <div style="display: flex;">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="판매 중" id="product_status">
+                <label class="form-check-label" for="flexCheckDefault">
+                  판매 중
+                </label>
+              </div>
+
+              <div class="form-check" style="margin-left: 20px;">
+                <input class="form-check-input" type="checkbox" value="판매 완료" id="product_status" checked>
+                <label class="form-check-label" for="flexCheckChecked">
+                  판매 완료
+                </label>
+              </div>
+            </div>
+
             <div class="mb-3" style="margin-top: 40px;">
               <label for="exampleFormControlInput1" class="form-label">가격</label>
               <input type="text" class="form-control" name="price" id="price">
@@ -125,6 +141,7 @@ export default {
       const product = document.getElementById('product').value;
       const category = document.getElementById('category').value;
       const reason = document.getElementById('reason').value;
+      const product_status = document.getElementById('product_status').value;
       const price = document.getElementById('price').value;
       const todayDate = document.getElementById('todayDate').value;
 
@@ -137,6 +154,7 @@ export default {
         category,
         reason,
         imageUrl,
+        product_status,
         price,
         todayDate,
       }
