@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div ref="topNavigation">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">중고월드</a>
@@ -58,6 +58,7 @@
 <script>
 
 import { onAuthStateChanged, getAuth } from 'firebase/auth';
+import gsap from 'gsap';
 
 export default {
   name: 'MainPage',
@@ -78,6 +79,9 @@ export default {
         this.userEmail = "회원가입을 진행해주세요";
       }
     });
+
+    const topNavigation = this.$refs.topNavigation;
+    gsap.fromTo(topNavigation, {autoAlpha: 0}, {autoAlpha: 1, duration: 1.5});
   },
 
   methods: {
