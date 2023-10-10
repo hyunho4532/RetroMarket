@@ -10,6 +10,10 @@
 
     <ProcessCardBody :products="searchResults" @open-chat="openChatModal"></ProcessCardBody>
 
+    <div class="recent-finish-items" style="display: flex; margin-top: 100px;" ref="recentFinishItems">
+      <h5>판매 완료 된 물품</h5>
+    </div>
+
     <FinishCardBody :products="searchResults" @open-chat="openChatModal"></FinishCardBody>
 
     <button type="button" class="btn btn-primary" id="product-insert-button" @click="openModal">물품 등록하기</button>
@@ -76,8 +80,10 @@ export default {
 
   mounted() {
     const recentItems = this.$refs.recentItems;
+    const recentFinishItems = this.$refs.recentFinishItems;
 
     gsap.from(recentItems, { opacity: 0, x: 100, duration: 2 })
+    gsap.fromTo(recentFinishItems, { x: 100, opacity: 0 }, { x: 0, duration: 1, opacity: 1, delay: 2 })
   }
 }
 </script>

@@ -168,7 +168,7 @@ export default {
 
     const cardElement = this.$refs.cardElement;
 
-    gsap.from(cardElement, { opacity: 0, x: 100, duration: 3.5 })
+    gsap.from(cardElement, { opacity: 0, x: 100, duration: 3.5, delay: 1 })
   },
 };
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="card-container">
+  <div class="card-container" ref="finishCardBody">
     <div
         v-for="item in filteredCardData"
         :key="item.id"
@@ -46,6 +46,7 @@ import ChatDialog from "@/components/chat/dialog/Chat-Dialog.vue";
 import ProductDetailDialog from "@/components/products/detail/Product-Detail-Dialog.vue";
 import { ref, onMounted } from "vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import gsap from "gsap";
 
 export default {
   data() {
@@ -150,20 +151,27 @@ export default {
   computed: {
     filteredCardData() {
       if (this.products && this.products.length > 0) {
-        return this.cardData.filter(item => this.products.includes(item.id));
+        return this.cardData.filter(item => {
+          return this.products.includes(item.id) && item.product_status === '판매 완료';
+        });
       }
-      return this.cardData;
+
+      return this.cardData.filter(item => item.product_status === '판매 완료');
     },
   },
   mounted() {
     axios
-        .post('http://localhost:8081/data/completed', {}, { withCredentials: true })
+        .post('http://localhost:8081/data', {}, { withCredentials: true })
         .then(response => {
           this.cardData = response.data;
         })
         .catch(error => {
           console.log(error);
         });
+
+    const finishCardBody = this.$refs.finishCardBody;
+
+    gsap.from(finishCardBody, { opacity: 0, x: 100, duration: 3.5, delay: 3 })
   },
 };
 </script>
