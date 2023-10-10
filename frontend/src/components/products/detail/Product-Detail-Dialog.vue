@@ -4,6 +4,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">상세 정보</h5>
+          <button class="btn btn-primary">물품 인증서 발급</button>
         </div>
         <div class="modal-body">
           <div style="margin-top: 8px;">주문 번호: {{ idValue }}</div>
@@ -14,7 +15,7 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="completeOrder(idValue)">닫기</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @click="completeOrder(idValue)">거래 완료</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="closeProductDetailModal">닫기</button>
         </div>
       </div>

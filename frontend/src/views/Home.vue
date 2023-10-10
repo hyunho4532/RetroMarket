@@ -8,7 +8,9 @@
       <button class="btn btn-primary" @click="searchProducts" style="margin-left: 16px; height: 35px;">검색</button>
     </div>
 
-    <CardBody :products="searchResults" @open-chat="openChatModal"></CardBody>
+    <ProcessCardBody :products="searchResults" @open-chat="openChatModal"></ProcessCardBody>
+
+    <FinishCardBody :products="searchResults" @open-chat="openChatModal"></FinishCardBody>
 
     <button type="button" class="btn btn-primary" id="product-insert-button" @click="openModal">물품 등록하기</button>
     <ModalDialog ref="modalDialog">
@@ -19,7 +21,8 @@
 
 <script>
 import SwiperBody from "@/components/swiper/SwiperBody.vue";
-import CardBody from "@/components/card/CardBody.vue";
+import ProcessCardBody from "@/components/card/status/process/Process-Card-Body.vue";
+import FinishCardBody from "@/components/card/status/finish/Finish-Card-Body.vue";
 import ModalDialog from "@/components/Modal-Dialog.vue";
 import axios from "axios";
 
@@ -37,7 +40,8 @@ export default {
   components: {
     ModalDialog,
     SwiperBody,
-    CardBody
+    ProcessCardBody,
+    FinishCardBody,
   },
 
   methods: {
@@ -49,6 +53,7 @@ export default {
     },
 
     searchProducts() {
+
       const encodedAddress = encodeURIComponent(this.searchAddress);
 
       axios.post(`http://localhost:8081/products?address=${encodedAddress}`)

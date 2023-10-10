@@ -157,7 +157,7 @@ export default {
   },
   mounted() {
     axios
-        .post('http://localhost:8081/data', {}, { withCredentials: true })
+        .post('http://localhost:8081/data/completed', {}, { withCredentials: true })
         .then(response => {
           this.cardData = response.data;
         })
