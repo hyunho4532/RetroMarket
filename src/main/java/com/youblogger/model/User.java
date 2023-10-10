@@ -15,16 +15,16 @@ public class User {
     private String nickname;
 
     @Column(length = 45)
-    private String phonenumber;
+    private String phone_number;
 
     public User() {
 
     }
 
-    public User(String email, String nickname, String phonenumber) {
+    public User(String email, String nickname, String phone_number) {
         this.email = email;
         this.nickname = nickname;
-        this.phonenumber = phonenumber;
+        this.phone_number = phone_number;
     }
 
     public String getEmail() {
@@ -43,11 +43,11 @@ public class User {
         this.nickname = nickname;
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getPhoneNumber() {
+        return phone_number;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setPhoneNumber(String phone_number) {
+        this.phone_number = phone_number;
     }
 }

@@ -2,7 +2,7 @@
     <div class="modal" tabindex="-1" v-if="showModal">
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
+          <div class="modal-header" ref="productModalInsert">
             <h5 class="modal-title">물품 등록</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @click="closeModal"></button>
           </div>
@@ -13,7 +13,7 @@
               <input type="email" name="address"  class="form-control" id="address" :value="address" placeholder="ex) 서울시 강동구" readonly="readonly">
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3" ref="productId">
               <input type="text" name="id"  class="form-control" id="id">
             </div>
 
@@ -92,6 +92,7 @@
 import axios from "axios";
 import KaKaoMap from "@/components/api/KaKaoMap.vue";
 import {getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage";
+import gsap from "gsap";
 
 const storage = getStorage();
 
@@ -187,7 +188,15 @@ export default {
     updateCategoryInput() {
       const categoryInput = document.getElementById('category');
       categoryInput.value = this.selectedCategory;
-    }
+    },
+  },
+
+  mounted() {
+    const productModalInsert = this.$refs.productModalInsert;
+    gsap.from(productModalInsert, {x: 100, duration: 3});
+
+    const productModalId = this.$refs.productId;
+    gsap.from(productModalId, { x: 100, duration: 2 });
   }
 };
 </script>

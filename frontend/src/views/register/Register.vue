@@ -2,23 +2,23 @@
   <div class="form">
     <h3 class="register-title">회원가입</h3>
     <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1">이메일</span>
-      <input type="text" class="form-control" v-model="email" name="email" placeholder="이메일을 입력해주세요!">
+      <span class="input-group-text">이메일</span>
+      <input type="text" class="form-control" v-model="email" id="email" placeholder="이메일을 입력해주세요!">
     </div>
 
     <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1">패스워드</span>
-      <input type="password" class="form-control" v-model="password" name="password" placeholder="패스워드를 입력해주세요!">
+      <span class="input-group-text">패스워드</span>
+      <input type="password" class="form-control" v-model="password" id="password" placeholder="패스워드를 입력해주세요!">
     </div>
 
     <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1">닉네임</span>
-      <input type="nickname" class="form-control" name="nickname" placeholder="닉네임을 입력해주세요!">
+      <span class="input-group-text">닉네임</span>
+      <input type="text" class="form-control" id="nickname" placeholder="닉네임을 입력해주세요!">
     </div>
 
     <div class="input-group mb-3">
-      <span class="input-group-text" id="basic-addon1">전화번호</span>
-      <input type="phonenumber" class="form-control" name="phonenumber" placeholder="전화번호를 입력해주세요!">
+      <span class="input-group-text">전화번호</span>
+      <input type="text" class="form-control" id="phone_number" placeholder="전화번호를 입력해주세요!">
     </div>
 
     <div>
@@ -29,6 +29,7 @@
 
 <script>
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import axios from "axios";
 
 export default {
   name: 'RegisterPage',
@@ -42,6 +43,12 @@ export default {
 
   methods: {
     signUp() {
+
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const nickname = document.getElementById('nickname').value;
+      const phone_number = document.getElementById('phone_number').value;
+
       const auth = getAuth();
       createUserWithEmailAndPassword(auth, this.email, this.password)
           .then(() => {
@@ -49,6 +56,23 @@ export default {
           })
           .catch(error => {
             alert('에러 : ' + error.message)
+          });
+
+      const itemData = {
+        email,
+        password,
+        nickname,
+        phone_number,
+      }
+
+      axios.post('http://localhost:8081/api/registerUser', itemData, {
+        withCredentials: true,
+      })
+          .then(response => {
+            console.log(`데이터 요청 완료 ${response.data}`);
+          })
+          .catch(error => {
+            console.log(`데이터 요청 중 에러: ${error}`);
           });
     }
   }

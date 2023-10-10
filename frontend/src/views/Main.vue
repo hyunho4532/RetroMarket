@@ -35,7 +35,7 @@
               <router-link class="nav-link" to="/login" style="font-size: 16px; font-weight: bold">로그인</router-link>
             </li>
 
-            <li class="nav-item" style="background-color: #fefefe" v-if="!userEmail">
+            <li class="nav-item" style="background-color: #fefefe" v-if="userEmail">
               <router-link class="nav-link" to="/register" style="font-size: 16px; font-weight: bold">회원 가입</router-link>
             </li>
 
@@ -81,7 +81,7 @@ export default {
     });
 
     const topNavigation = this.$refs.topNavigation;
-    gsap.fromTo(topNavigation, {autoAlpha: 0}, {autoAlpha: 1, duration: 1.5});
+    gsap.from(topNavigation, { opacity: 0, y: -50, duration: 2 })
   },
 
   methods: {
