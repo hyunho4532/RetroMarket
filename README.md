@@ -39,12 +39,12 @@
 <br>
 
 ### Library
-> Vue-router, Vue-Dialog, VueX, Axios
+> Vue-router, Vue-Dialog, VueX, Axios, Gsap
 
 <br>
 
 ### Animation
-> GSAP
+> Gsap
 
 <br>
 
