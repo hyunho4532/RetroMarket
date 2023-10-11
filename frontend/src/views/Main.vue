@@ -48,6 +48,10 @@
             <li class="nav-item" style="background-color: #fefefe" v-if="userEmail">
               <span class="nav-link" style="font-size: 16px; font-weight: bold">{{ userEmail }}</span>
             </li>
+
+            <li class="nav-item" style="background-color: #fefefe; margin-left: 8px; margin-top: 4px;">
+              <img src="./asset/google.png" width="30" height="30" @click="loginWithGoogle" />
+            </li>
           </ul>
         </div>
       </div>
@@ -57,7 +61,7 @@
 </template>
 <script>
 
-import { onAuthStateChanged, getAuth } from 'firebase/auth';
+import { onAuthStateChanged, getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import {topNavigationAnimation} from "@/views/gsap/topNavigation";
 
 export default {
@@ -90,8 +94,28 @@ export default {
       auth.signOut();
 
       alert('로그아웃이 정상적으로 됐습니다');
+    },
+
+    async loginWithGoogle() {
+      const auth = getAuth();
+      const provider = new GoogleAuthProvider();
+
+      try {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+
+        await this.registerUser(user.email);
+
+        this.userEmail = user.email;
+      } catch (error) {
+        console.error(`Error with Google: ${error}`);
+      }
     }
   },
+
+  async registerUser(email) {
+    return email;
+  }
 }
 </script>
 
