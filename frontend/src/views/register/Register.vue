@@ -38,6 +38,7 @@ import {
   animateRegisterButton
 } from "@/views/register/gsap/register-animation";
 import axios from "axios";
+import {firebaseAuthLogin, firebaseAuthRegister} from "@/views/auth/auth";
 
 export default {
   name: 'RegisterPage',
@@ -57,13 +58,12 @@ export default {
       const nickname = document.getElementById('nickname').value;
       const phone_number = document.getElementById('phone_number').value;
 
-      const auth = getAuth();
-      createUserWithEmailAndPassword(auth, this.email, this.password)
-          .then(() => {
-            alert('회원가입 완료')
+      firebaseAuthRegister(this.email, this.password)
+          .then(user => {
+            alert(`회원 가입 완료. 사용자 정보: ${JSON.stringify(user)}`);
           })
           .catch(error => {
-            alert('에러 : ' + error.message)
+            alert('에러: ' + error.message);
           });
 
       const itemData = {

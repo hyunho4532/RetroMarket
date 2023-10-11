@@ -4,7 +4,7 @@
         v-for="item in filteredCardData"
         :key="item.id"
         class="card"
-        style="width: 26rem; height: 30rem; margin-top: 30px; margin-left: 30px; margin-bottom: 20px;"
+        style="width: 28rem; height: 30rem; margin-top: 30px; margin-left: 30px; margin-bottom: 20px;"
     >
       <div class="card-body" @click="openProductDetailModal(item.address, item.id)">
         <h5 class="card-title" style="color: royalblue; font-size: 18px;">{{ item.product_status }}</h5>

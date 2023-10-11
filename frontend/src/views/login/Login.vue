@@ -18,13 +18,13 @@
 </template>
 
 <script>
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import {
   animateLoginButton,
   animateLoginEmail,
   animateLoginPassword,
   animateLoginTitle
 } from "@/views/login/gsap/login-animation";
+import {firebaseAuthLogin} from "@/views/auth/auth";
 
 export default {
   name: 'RegisterPage',
@@ -38,13 +38,12 @@ export default {
 
   methods: {
     signIn() {
-      const auth = getAuth();
-      signInWithEmailAndPassword(auth, this.email, this.password)
-          .then(() => {
-            alert('로그인 완료')
+      firebaseAuthLogin(this.email, this.password)
+          .then(user => {
+            alert(`로그인 완료. 사용자 정보: ${JSON.stringify(user)}`);
           })
           .catch(error => {
-            alert('에러 : ' + error.message)
+            alert('에러: ' + error.message);
           });
     }
   },
