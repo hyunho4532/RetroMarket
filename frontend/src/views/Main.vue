@@ -31,7 +31,7 @@
           </form>
 
           <ul class="navbar-nav">
-            <li class="nav-item" style="background-color: #fefefe" v-if="!userEmail">
+            <li class="nav-item" style="background-color: #fefefe" v-if="userEmail">
               <router-link class="nav-link" to="/login" style="font-size: 16px; font-weight: bold">로그인</router-link>
             </li>
 
@@ -39,7 +39,7 @@
               <router-link class="nav-link" to="/register" style="font-size: 16px; font-weight: bold">회원 가입</router-link>
             </li>
 
-            <li class="nav-item" style="background-color: #fefefe" v-if="userEmail">
+            <li class="nav-item" style="background-color: #fefefe" v-if="!userEmail">
               <span class="nav-link" @click="logout" style="font-size: 16px; font-weight: bold">로그 아웃</span>
             </li>
           </ul>
