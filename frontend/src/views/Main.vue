@@ -31,16 +31,16 @@
           </form>
 
           <ul class="navbar-nav">
-            <li class="nav-item" style="background-color: #fefefe" v-if="userEmail">
+            <li class="nav-item" style="background-color: #fefefe" v-if="!userEmail">
               <router-link class="nav-link" to="/login" style="font-size: 16px; font-weight: bold">로그인</router-link>
             </li>
 
-            <li class="nav-item" style="background-color: #fefefe" v-if="userEmail">
+            <li class="nav-item" style="background-color: #fefefe" v-if="!userEmail">
               <router-link class="nav-link" to="/register" style="font-size: 16px; font-weight: bold">회원 가입</router-link>
             </li>
 
-            <li class="nav-item" style="background-color: #fefefe" v-if="!userEmail">
-              <span class="nav-link" @click="logout" style="font-size: 16px; font-weight: bold">로그 아웃</span>
+            <li class="nav-item" style="background-color: #fefefe; color: red;" v-if="userEmail">
+              <span class="nav-link" @click="logout" style="font-size: 16px; font-weight: bold">계정 탈퇴</span>
             </li>
           </ul>
 
@@ -61,7 +61,7 @@
 </template>
 <script>
 
-import { onAuthStateChanged, getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import {onAuthStateChanged, getAuth, signInWithPopup, GoogleAuthProvider, EmailAuthProvider} from 'firebase/auth';
 import {topNavigationAnimation} from "@/views/gsap/topNavigation";
 
 export default {
@@ -69,7 +69,8 @@ export default {
 
   data() {
     return {
-      userEmail: "이메일을 입력해주세요"
+      userEmail: "이메일을 입력해주세요",
+      password: "",
     };
   },
 
@@ -91,9 +92,22 @@ export default {
     logout() {
       const auth = getAuth();
 
-      auth.signOut();
+      const credential = EmailAuthProvider.credential(this.userEmail, this.password); // Use the user's email and password
 
-      alert('로그아웃이 정상적으로 됐습니다');
+      auth.currentUser.reauthenticateWithCredential(credential)
+          .then(() => {
+            auth.currentUser.delete()
+                .then(() => {
+                  alert('탈퇴 처리가 정상적으로 됐습니다');
+                })
+                .catch((error) => {
+                  // Handle deletion error
+                  console.error('Error deleting account:', error);
+                });
+          })
+          .catch((error) => {
+            console.error('Error reauthenticating:', error);
+          });
     },
 
     async loginWithGoogle() {

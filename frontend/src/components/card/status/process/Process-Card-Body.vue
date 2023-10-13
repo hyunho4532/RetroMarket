@@ -20,11 +20,11 @@
         <p class="card-text" style="margin-top: 20px; text-align: end; margin-right: 10px; font-size: 18px;">상품 등록 날짜: {{ item.todayDate }}</p>
         <div style="display: flex; justify-items: end; justify-content: end; margin-bottom: 10px;">
           <button style="color: black; border: none; background: none;" @click="incrementInterest(item.id)">관심</button>
-          <p class="card-text" v-text="getInterestValue(item.address)" style="text-align: end; margin-right: 10px; margin-left: 10px;"></p>
+          <p class="card-text" v-text="getInterestValue(item.id)" style="text-align: end; margin-right: 10px; margin-left: 10px;"></p>
         </div>
 
         <div style="display: flex; justify-content: end; text-align: end">
-          <p v-if="isUserLoggedIn" style="text-align: end; margin-right: 10px; color: royalblue;" @click="openChatModal(item.id)">채팅하기</p>
+          <p v-if="isUserLoggedIn && currentUserUid" style="text-align: end; margin-right: 10px; color: royalblue;" @click="openChatModal(item.id)">채팅하기</p>
           <p v-if="isUserLoggedIn" style="text-align: end; margin-right: 10px; color: red;" @click="deleteChatModal(item.id)">삭제</p>
         </div>
       </div>
@@ -59,17 +59,20 @@ export default {
 
   setup() {
     const isUserLoggedIn = ref(false);
+    const currentUserUid = ref(null);
 
     const auth = getAuth();
 
     onMounted(() => {
       onAuthStateChanged(auth, (user) => {
         isUserLoggedIn.value = !!user;
+        currentUserUid.value = user ? user.uid : null;
       });
     });
 
     return {
-      isUserLoggedIn
+      isUserLoggedIn,
+      currentUserUid
     }
   },
 
@@ -127,7 +130,7 @@ export default {
       if (cardId in this.interestValues) {
         this.interestValues[cardId]++;
       } else {
-        this.interestValues[cardId] = 1;
+        this.interestValues[cardId] = 1; // Use $set to make Vue aware of the new property
       }
     },
 
