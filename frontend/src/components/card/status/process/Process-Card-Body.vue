@@ -47,6 +47,7 @@ import ProductDetailDialog from "@/components/products/detail/Product-Detail-Dia
 import { ref, onMounted } from "vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {processCardBody} from "@/components/card/gsap/cardBodyAnimation";
+import {requestProcessCardSendData} from "@/components/api/process-card-body";
 
 export default {
   data() {
@@ -146,6 +147,16 @@ export default {
 
     saveDataToLocalStorage() {
       localStorage.setItem('cardData', JSON.stringify(this.cardData));
+    },
+
+    getProcessCardLoadData() {
+      requestProcessCardSendData()
+          .then(response => {
+            this.cardData = response.data;
+          })
+          .catch(error => {
+            console.error(error);
+          })
     }
   },
   computed: {
@@ -157,14 +168,7 @@ export default {
     },
   },
   mounted() {
-    axios
-        .post('http://localhost:8081/data', {}, { withCredentials: true })
-        .then(response => {
-          this.cardData = response.data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    this.getProcessCardLoadData();
 
     processCardBody(this.$refs.cardElement);
   },
