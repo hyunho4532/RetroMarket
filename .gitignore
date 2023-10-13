@@ -35,3 +35,5 @@ out/
 
 ### VS Code ###
 .vscode/
+
+../RetroMarket-gsap-source/RetroMarket-gsap-source/frontend/src/components/KaKao-Loading-Dialog.vue

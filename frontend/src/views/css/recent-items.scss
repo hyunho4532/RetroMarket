@@ -4,6 +4,7 @@
 
 #product-insert-button {
   margin-left: 30px;
+  margin-bottom: 30px;
 }
 
 .recent-finish-items {
@@ -12,4 +13,11 @@
 
 .recent-progress-items {
   padding-left: 30px;
+}
+
+.contact-button-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
 }
