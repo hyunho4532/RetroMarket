@@ -3,9 +3,10 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+new Vuex.Store({
     state: {
         chatMessages: {},
+        interestValues: {},
     },
 
     mutations: {
@@ -14,6 +15,26 @@ export default new Vuex.Store({
                 state.chatMessages[roomId] = [];
             }
             state.chatMessages[roomId].push(message);
-        }
-    }
+        },
+
+        incrementInterest(state, { cardId }) {
+            if (cardId in state.interestValues) {
+                state.interestValues[cardId]++;
+            } else {
+                state.interestValues[cardId] = 0;
+            }
+        },
+    },
+
+    actions: {
+        incrementInterest({ commit }, { cardId }) {
+            commit('incrementInterest', { cardId });
+        },
+    },
+
+    getters: {
+        getInterestValue: (state) => (cardId) => {
+            return state.interestValues[cardId] || 0;
+        },
+    },
 })

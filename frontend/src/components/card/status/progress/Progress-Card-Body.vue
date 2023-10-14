@@ -76,6 +76,7 @@ export default {
     ProductDetailDialog,
     ChatDialog,
   },
+
   props: {
     products: {
       type: Array,
