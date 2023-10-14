@@ -4,9 +4,9 @@
         v-for="item in filteredCardData"
         :key="item.id"
         class="card"
-        style="width: 28rem; height: 30rem; margin-top: 30px; margin-left: 30px; margin-bottom: 20px;"
+        style="width: 28rem; height: 32rem; margin-top: 30px; margin-left: 30px; margin-bottom: 20px;"
     >
-      <div class="card-body" @click="openProductDetailModal(item.address, item.id)">
+      <div class="card-body" @click="openProductDetailModal(item.address, this.interestValues, item.id)">
         <h5 class="card-title" style="color: royalblue; font-size: 18px;">{{ item.product_status }}</h5>
         <h5 class="card-title" style="margin-top: 40px;">주소: {{ item.address }}</h5>
         <h6 class="card-subtitle mb-2 text-body-secondary" style="margin-top: 40px;">상품: {{ item.product }}</h6>
@@ -20,7 +20,7 @@
         <p class="card-text" style="margin-top: 20px; text-align: end; margin-right: 10px; font-size: 18px;">상품 등록 날짜: {{ item.todayDate }}</p>
         <div style="display: flex; justify-items: end; justify-content: end; margin-bottom: 10px;">
           <button style="color: black; border: none; background: none;" @click="incrementInterest(item.id)">관심</button>
-          <p class="card-text" v-text="getInterestValue(item.address)" style="text-align: end; margin-right: 10px; margin-left: 10px;"></p>
+          <p class="card-text" v-text="getInterestValue(item.id)" style="text-align: end; margin-right: 10px; margin-left: 10px;"></p>
         </div>
 
         <div style="display: flex; justify-content: end; text-align: end">
@@ -31,7 +31,7 @@
     </div>
   </div>
 
-  <ProductDetailDialog ref="productDetailDialog" @mark-as-sold="markItemAsSold" :address="cardData.address" :itemid="cardData.id">
+  <ProductDetailDialog ref="productDetailDialog" @mark-as-sold="markItemAsSold" :address="cardData.address" :interest="cardData.interestValues" :itemid="cardData.id">
     <button @click="closeProductDetailModal">닫기</button>
   </ProductDetailDialog>
 
@@ -46,7 +46,8 @@ import ChatDialog from "@/components/chat/dialog/Chat-Dialog.vue";
 import ProductDetailDialog from "@/components/products/detail/Product-Detail-Dialog.vue";
 import { ref, onMounted } from "vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import {finishCardBody} from "@/components/card/gsap/cardBodyAnimation";
+import {progressCardBody} from "@/components/card/gsap/cardBodyAnimation";
+import {requestProcessCardSendData} from "@/components/api/process-card-body";
 
 export default {
   data() {
@@ -76,6 +77,7 @@ export default {
     ProductDetailDialog,
     ChatDialog,
   },
+
   props: {
     products: {
       type: Array,
@@ -114,8 +116,10 @@ export default {
       this.$emit('joinRoom', roomId);
     },
 
-    openProductDetailModal(address, itemId) {
-      this.$refs.productDetailDialog.openProductDetailModal(address, itemId);
+    openProductDetailModal(address, interest, itemId) {
+      console.log(interest);
+
+      this.$refs.productDetailDialog.openProductDetailModal(address, interest, itemId);
     },
 
     closeProductDetailModal() {
@@ -128,6 +132,12 @@ export default {
       } else {
         this.interestValues[cardId] = 1;
       }
+
+      this.saveDataToLocalStorage();
+    },
+
+    saveDataToLocalStorage() {
+      localStorage.setItem('interestValues', JSON.stringify(this.interestValues));
     },
 
     markItemAsSold(address) {
@@ -139,37 +149,45 @@ export default {
       }
     },
 
-    getInterestValue(address) {
-      console.log(address);
-      return this.interestValues[address] || 0;
+    getInterestValue(cardId) {
+      console.log(cardId);
+      return this.interestValues[cardId] || 0;
     },
 
-    saveDataToLocalStorage() {
-      localStorage.setItem('cardData', JSON.stringify(this.cardData));
-    }
+    loadInterestData() {
+      const savedData = JSON.parse(localStorage.getItem('interestValues'));
+
+      if (savedData) {
+        this.interestValues = savedData;
+      }
+    },
+
+    getProcessCardLoadData() {
+      requestProcessCardSendData()
+          .then(response => {
+            this.cardData = response.data;
+            this.loadInterestData();
+          })
+          .catch(error => {
+            console.error(error);
+          })
+    },
   },
   computed: {
     filteredCardData() {
       if (this.products && this.products.length > 0) {
         return this.cardData.filter(item => {
-          return this.products.includes(item.id) && item.product_status === '판매 완료';
+          return this.products.includes(item.id) && item.product_status === '판매 중';
         });
       }
 
-      return this.cardData.filter(item => item.product_status === '판매 완료');
+      return this.cardData.filter(item => item.product_status === '판매 중');
     },
   },
   mounted() {
-    axios
-        .post('http://localhost:8081/data', {}, { withCredentials: true })
-        .then(response => {
-          this.cardData = response.data;
-        })
-        .catch(error => {
-          console.log(error);
-        });
+    this.getProcessCardLoadData();
 
-    finishCardBody(this.$refs.finishCardBody);
+    progressCardBody(this.$refs.finishCardBody);
   },
 };
 </script>

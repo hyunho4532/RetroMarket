@@ -40,9 +40,9 @@
 
 <script>
 import SwiperBody from "@/components/swiper/SwiperBody.vue";
-import ProcessCardBody from "@/components/card/status/process/Process-Card-Body.vue";
-import FinishCardBody from "@/components/card/status/finish/Finish-Card-Body.vue";
-import ProgressCardBody from "@/components/card/status/progress/Progress-Card-Body.vue";
+import ProcessCardBody from "@/components/card/Process-Card-Body.vue";
+import FinishCardBody from "@/components/card/Finish-Card-Body.vue";
+import ProgressCardBody from "@/components/card/Progress-Card-Body.vue";
 import ModalDialog from "@/components/Modal-Dialog.vue";
 import axios from "axios";
 import gsap from 'gsap';

@@ -6,11 +6,12 @@
           <h5 class="modal-title">상세 정보</h5>
           <button class="btn btn-primary">물품 인증서 발급</button>
         </div>
+
         <div class="modal-body">
           <div style="margin-top: 8px;">주문 번호: {{ idValue }}</div>
           <div style="margin-top: 20px;">주소: {{ addressValue }}</div>
+          <div style="margin-top: 20px;">관심 수: {{ interestValue }}</div>
           <div id="map" style="width: 800px; height: 400px; margin-top: 30px;">
-
           </div>
         </div>
 
@@ -31,6 +32,7 @@ export default {
     return {
       showModal: false,
       addressValue: '',
+      interestValue: '',
       idValue: '',
       map: null,
       marker: null,
@@ -39,6 +41,7 @@ export default {
 
   props: {
     address: String,
+    interest: String,
   },
 
   methods: {
@@ -83,12 +86,16 @@ export default {
       });
     },
 
-    openProductDetailModal(address, itemId) {
-      this.addressValue = address;
+    openProductDetailModal(addressValue, interestValue, itemId) {
+      this.addressValue = addressValue;
+      
+      this.interestValue = interestValue;
+      console.log(this.interestValue);
+
       this.idValue = itemId;
       this.showModal = true
 
-      console.log(address);
+      console.log(addressValue);
       console.log(itemId);
 
       if (window.kakao && window.kakao.maps) {

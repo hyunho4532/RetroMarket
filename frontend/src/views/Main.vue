@@ -62,7 +62,7 @@
 <script>
 
 import {onAuthStateChanged, getAuth, signInWithPopup, GoogleAuthProvider, EmailAuthProvider} from 'firebase/auth';
-import {topNavigationAnimation} from "@/views/gsap/topNavigation";
+import {topNavigationAnimation} from "@/views/gsap/top-navigation-animation";
 
 export default {
   name: 'MainPage',

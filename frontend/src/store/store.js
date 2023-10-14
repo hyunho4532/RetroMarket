@@ -1,9 +1,7 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import { createStore } from 'vuex';
 
-Vue.use(Vuex);
 
-new Vuex.Store({
+export default createStore ({
     state: {
         chatMessages: {},
         interestValues: {},
@@ -37,4 +35,4 @@ new Vuex.Store({
             return state.interestValues[cardId] || 0;
         },
     },
-})
+});

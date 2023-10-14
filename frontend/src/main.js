@@ -3,6 +3,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '@popperjs/core/dist/umd/popper.min.js';
 
 import router from './router/router';
+import store from './store/store';
 
 import { createApp } from 'vue';
 import { initializeApp } from 'firebase/app';
@@ -24,4 +25,4 @@ const vueApp = createApp(App);
 
 vueApp.config.productionTip = false;
 
-vueApp.use(router).mount('#app');
+vueApp.use(store).use(router).mount('#app');
