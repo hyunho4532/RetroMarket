@@ -132,6 +132,8 @@ export default {
       } else {
         this.interestValues[cardId] = 1; // Use $set to make Vue aware of the new property
       }
+
+      this.saveInterestData();
     },
 
     markItemAsSold(address) {
@@ -144,23 +146,31 @@ export default {
     },
 
     getInterestValue(address) {
-      console.log(address);
       return this.interestValues[address] || 0;
     },
 
-    saveDataToLocalStorage() {
-      localStorage.setItem('cardData', JSON.stringify(this.cardData));
+    saveInterestData() {
+      localStorage.setItem('interestValues', JSON.stringify(this.interestValues));
+    },
+
+    loadInterestData() {
+      const savedData = JSON.parse(localStorage.getItem('interestValues'));
+
+      if (savedData) {
+        this.interestValues = savedData;
+      }
     },
 
     getProcessCardLoadData() {
       requestProcessCardSendData()
           .then(response => {
             this.cardData = response.data;
+            this.loadInterestData();
           })
           .catch(error => {
             console.error(error);
           })
-    }
+    },
   },
   computed: {
     filteredCardData() {

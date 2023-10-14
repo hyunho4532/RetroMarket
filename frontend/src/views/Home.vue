@@ -102,10 +102,6 @@ export default {
     openChatModal(roomId) {
       this.$refs.chatDialog.openChatModal(roomId);
     },
-
-    openKaKaoTalkChat() {
-      window.location.href = 'https://pf.kakao.com/_xcaSjG/chat'
-    }
   },
 
   mounted() {
