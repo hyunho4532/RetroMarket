@@ -1,59 +1,13 @@
 # RetroMarket
 중고 거래 판매 애플리케이션 (Spring X Vue)
 
-### Tool
-> intellij
+## 메인 페이지
 
-<br>
+## 중고 거래 페이지
 
-### Frontend
-> Vue.js
+## 알구(알바 구함) 페이지
 
-<br>
+## 채팅 페이지
 
-### Backend
-> Spring, Spring Boot
-
-<br>
-
-### Server
-> Firebase
-
-<br>
-
-### Chatting Service
-> Node.js, Socket.io
-
-<br>
-
-### Database
-> MySQL 
-
-<br>
-
-### Library
-> Vue-router, Vue-Dialog, VueX, Axios
-
-<br>
-
-### Animation
-> GSAP
-
-<br>
-
-### Social Login (Google Login, Kakao Login)
-> Spring Security, OAuth2
-
-<br>
-
-### 계획 의도
-당근 마켓이나, 중고 나라에서 중고로 구매하는 사람들이 많다.
-
-<span style="height: 8px;">
-
-해당 개발자도 당근 마켓을 많이 사용하는 사용자로서 
-
-<br>
-<span style="height: 16px;">
-
-당근 마켓을 기반으로 중고 거래 플랫폼을 만들려고 한다.
+## 다운로드 페이지
+> 관리자만 다운로드 페이지 볼 수 있음.
