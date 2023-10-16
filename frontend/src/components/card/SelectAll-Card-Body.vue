@@ -183,11 +183,11 @@ export default {
 
       if (this.products && this.products.length > 0) {
         return this.cardData.filter(item => {
-          return this.products.includes(item.id) && item.product === this.searchProduct;
+          return this.products.includes(item.id) && item.product.includes(this.searchProduct);
         });
       }
 
-      return this.cardData.filter(item => item.product === this.searchProduct);
+      return this.cardData.filter(item => item.product.includes(this.searchProduct));
     },
   },
 
