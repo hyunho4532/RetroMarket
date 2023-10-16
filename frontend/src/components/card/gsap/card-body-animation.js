@@ -11,3 +11,7 @@ export function finishCardBody(finish) {
 export function progressCardBody(progress) {
     gsap.from(progress, { opacity: 0, x: 100, duration: 3.5, delay: 5 })
 }
+
+export function filteringCardBody(filtering) {
+    gsap.from(filtering, { opacity: 0, x: 100, duration: 4.5, delay: 5 });
+}

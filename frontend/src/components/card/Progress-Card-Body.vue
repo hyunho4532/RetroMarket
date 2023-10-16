@@ -4,28 +4,28 @@
         v-for="item in filteredCardData"
         :key="item.id"
         class="card"
-        style="width: 28rem; height: 32rem; margin-top: 30px; margin-left: 30px; margin-bottom: 20px;"
+        id="card-progress-container"
     >
       <div class="card-body" @click="openProductDetailModal(item.address, this.interestValues, item.id)">
-        <h5 class="card-title" style="color: royalblue; font-size: 18px;">{{ item.product_status }}</h5>
-        <h5 class="card-title" style="margin-top: 40px;">주소: {{ item.address }}</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary" style="margin-top: 40px;">상품: {{ item.product }}</h6>
+        <h5 class="card-progress-product-status">{{ item.product_status }}</h5>
+        <h5 class="card-progress-address">주소: {{ item.address }}</h5>
+        <h6 class="card-progress-product">상품: {{ item.product }}</h6>
         <img v-if="item.imageUrl" :src="item.imageUrl" alt="Product Image" style="width: 120px; height: auto; margin-top: 10px">
-        <h6 class="card-subtitle mb-2 text-body-secondary" style="margin-top: 12px;">카테고리: {{ item.category }}</h6>
-        <p class="card-text" style="margin-top: 60px; font-size: 16px;">판매 이유: {{ item.reason }}</p>
-        <p class="card-text" style="margin-top: 20px;">가격: {{ item.price }}원</p>
+        <h6 class="card-progress-category">카테고리: {{ item.category }}</h6>
+        <p class="card-progress-reason">판매 이유: {{ item.reason }}</p>
+        <p class="card-progress-price">가격: {{ item.price }}원</p>
       </div>
 
       <div>
-        <p class="card-text" style="margin-top: 20px; text-align: end; margin-right: 10px; font-size: 18px;">상품 등록 날짜: {{ item.todayDate }}</p>
-        <div style="display: flex; justify-items: end; justify-content: end; margin-bottom: 10px;">
-          <button style="color: black; border: none; background: none;" @click="incrementInterest(item.id)">관심</button>
-          <p class="card-text" v-text="getInterestValue(item.id)" style="text-align: end; margin-right: 10px; margin-left: 10px;"></p>
+        <p class="card-progress-date">상품 등록 날짜: {{ item.todayDate }}</p>
+        <div class="card-progress-interest">
+          <button class="card-progress-interest-button" @click="incrementInterest(item.id)">관심</button>
+          <p class="card-progress-interest-text" v-text="getInterestValue(item.id)"></p>
         </div>
 
-        <div style="display: flex; justify-content: end; text-align: end">
-          <p style="text-align: end; margin-right: 10px; color: royalblue;" @click="openChatModal(item.id)">채팅하기</p>
-          <p v-if="isUserLoggedIn" style="text-align: end; margin-right: 10px; color: red;" @click="deleteChatModal(item.id)">삭제</p>
+        <div class="card-progress-chat-or-delete">
+          <p class="card-progress-chat-text" style="text-align: end; margin-right: 10px; color: royalblue;" @click="openChatModal(item.id)">채팅하기</p>
+          <p class="card-progress-delete-chat" style="text-align: end; margin-right: 10px; color: red;" v-if="isUserLoggedIn" @click="deleteChatModal(item.id)">삭제</p>
         </div>
       </div>
     </div>
@@ -192,9 +192,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-}
+<style lang="scss">
+@import "scss/progress-card-body";
 </style>

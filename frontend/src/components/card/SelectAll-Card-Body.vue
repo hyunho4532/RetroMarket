@@ -46,7 +46,7 @@ import ChatDialog from "@/components/chat/dialog/Chat-Dialog.vue";
 import ProductDetailDialog from "@/components/products/detail/Product-Detail-Dialog.vue";
 import { ref, onMounted } from "vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import {processCardBody} from "@/components/card/gsap/card-body-animation";
+import {filteringCardBody} from "@/components/card/gsap/card-body-animation";
 import {requestProcessCardSendData} from "@/components/api/process-card-body";
 
 export default {
@@ -194,7 +194,7 @@ export default {
   mounted() {
     this.getProcessCardLoadData();
 
-    processCardBody(this.$refs.cardElement);
+    filteringCardBody(this.$refs.cardElement);
   },
 };
 </script>
