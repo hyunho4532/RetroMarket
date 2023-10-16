@@ -1,8 +1,9 @@
+
 .card-container {
   display: flex;
   flex-wrap: wrap;
 
-  #process-card-container {
+  #card-finish-container {
     width: 20rem;
     height: 28rem;
     margin-top: 30px;
@@ -11,54 +12,53 @@
   }
 
   .card-body {
-
-    .card-process-product-status {
+    .card-finish-product-status {
       color: royalblue;
       font-size: 18px;
     }
 
-    .card-process-address {
+    .card-finish-address {
       margin-top: 40px;
       font-size: 14px;
     }
 
-    .card-process-category {
+    .card-finish-category {
       margin-top: 12px;
       font-size: 12px;
     }
 
-    .card-process-reason {
+    .card-finish-reason {
       margin-top: 30px;
       font-size: 14px;
       color: blue;
     }
 
-    .card-process-price {
+    .card-finish-price {
       margin-top: 20px;
       font-size: 12px;
     }
   }
 
-  .card-process-date {
+  .card-finish-date {
     text-align: end;
     margin-right: 10px;
     font-size: 12px;
   }
 
-  .card-process-interest {
+  .card-finish-interest {
     display: flex;
     justify-items: end;
     justify-content: end;
     margin-bottom: 20px;
 
-    .card-process-interest-button {
+    .card-finish-interest-button {
       color: black;
       border: none;
       background: none;
       font-size: 10px;
     }
 
-    .card-process-interest-text {
+    .card-finish-interest-text {
       text-align: end;
       margin-right: 10px;
       margin-top: 16px;
@@ -66,19 +66,19 @@
     }
   }
 
-  .card-process-chat-or-delete {
+  .card-finish-chat-or-delete {
     display: flex;
     text-align: end;
     justify-content: end;
   }
 
-  .card-process-chat-text {
+  .card-finish-chat-text {
     text-align: end;
     margin-right: 10px;
     color: royalblue;
   }
 
-  .card-process-delete-text {
+  .card-finish-delete-text {
     text-align: end;
     margin-right: 10px;
     color: red;

@@ -24,8 +24,8 @@
         </div>
 
         <div class="card-process-chat-or-delete">
-          <p v-if="isUserLoggedIn && currentUserUid" style="text-align: end; margin-right: 10px; color: royalblue;" @click="openChatModal(item.id)">채팅하기</p>
-          <p v-if="isUserLoggedIn" style="text-align: end; margin-right: 10px; color: red;" @click="deleteChatModal(item.id)">삭제</p>
+          <p class="card-process-chat-text" v-if="isUserLoggedIn && currentUserUid" @click="openChatModal(item.id)">채팅하기</p>
+          <p class="card-process-delete-text" v-if="isUserLoggedIn" @click="deleteChatModal(item.id)">삭제</p>
         </div>
       </div>
     </div>
@@ -46,7 +46,7 @@ import ChatDialog from "@/components/chat/dialog/Chat-Dialog.vue";
 import ProductDetailDialog from "@/components/products/detail/Product-Detail-Dialog.vue";
 import { ref, onMounted } from "vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import {processCardBody} from "@/components/card/gsap/cardBodyAnimation";
+import {processCardBody} from "@/components/card/gsap/card-body-animation";
 import {requestProcessCardSendData} from "@/components/api/process-card-body";
 
 export default {

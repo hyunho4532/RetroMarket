@@ -4,26 +4,26 @@
         v-for="item in filteredCardData"
         :key="item.id"
         class="card"
-        style="width: 20rem; height: 24rem; margin-top: 30px; margin-left: 30px; margin-bottom: 20px;"
+        id="card-finish-container"
     >
       <div class="card-body" @click="openProductDetailModal(item.address, item.id)">
-        <h5 class="card-title" style="color: royalblue; font-size: 18px;">{{ item.product_status }}</h5>
-        <h5 class="card-title" style="margin-top: 40px; font-size: 14px;">주소: {{ item.address }}</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary" style="margin-top: 40px; font-size: 12px;">상품: {{ item.product }}</h6>
+        <h5 class="card-finish-product-status">{{ item.product_status }}</h5>
+        <h5 class="card-finish-address">주소: {{ item.address }}</h5>
+        <h6 class="card-finish-product">상품: {{ item.product }}</h6>
         <img v-if="item.imageUrl" :src="item.imageUrl" alt="Product Image" style="width: 120px; height: auto; margin-top: 10px">
-        <h6 class="card-subtitle mb-2 text-body-secondary" style="margin-top: 12px; font-size: 12px;">카테고리: {{ item.category }}</h6>
-        <p class="card-text" style="margin-top: 30px; font-size: 14px; color: blue">판매 이유: {{ item.reason }}</p>
-        <p class="card-text" style="margin-top: 20px; font-size: 12px;">가격: {{ item.price }}원</p>
+        <h6 class="card-finish-category">카테고리: {{ item.category }}</h6>
+        <p class="card-finish-reason">판매 이유: {{ item.reason }}</p>
+        <p class="card-finish-price">가격: {{ item.price }}원</p>
       </div>
 
       <div>
-        <p class="card-text" style="text-align: end; margin-right: 10px; font-size: 12px;">상품 등록 날짜: {{ item.todayDate }}</p>
-        <div style="display: flex; justify-items: end; justify-content: end; margin-bottom: 10px;">
-          <button style="color: black; border: none; background: none; font-size: 10px;" @click="incrementInterestValue(item.id)">관심</button>
-          <p class="card-text" v-text="getInterestValue(item.id)" style="font-size: 10px; text-align: end; margin-right: 10px; margin-left: 10px;"></p>
+        <p class="card-finish-date">상품 등록 날짜: {{ item.todayDate }}</p>
+        <div class="card-finish-interest">
+          <button class="card-finish-interest-button" @click="incrementInterestValue(item.id)">관심</button>
+          <p class="card-finish-interest-text" v-text="getInterestValue(item.id)"></p>
         </div>
 
-        <div style="display: flex; justify-content: end; text-align: end">
+        <div class="card-finish-chat-or-delete">
           <p style="text-align: end; margin-right: 10px; color: royalblue;" @click="openChatModal(item.id)">채팅하기</p>
           <p v-if="isUserLoggedIn" style="text-align: end; margin-right: 10px; color: red;" @click="deleteChatModal(item.id)">삭제</p>
         </div>
@@ -46,7 +46,7 @@ import ChatDialog from "@/components/chat/dialog/Chat-Dialog.vue";
 import ProductDetailDialog from "@/components/products/detail/Product-Detail-Dialog.vue";
 import { ref, onMounted } from "vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import {finishCardBody} from "@/components/card/gsap/cardBodyAnimation";
+import {finishCardBody} from "@/components/card/gsap/card-body-animation";
 
 export default {
   data() {
@@ -186,9 +186,6 @@ export default {
 };
 </script>
 
-<style scoped>
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-}
+<style lang="scss">
+@import "scss/finish-card-body";
 </style>
