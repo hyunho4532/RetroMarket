@@ -11,7 +11,7 @@
         <h5 class="card-process-product-state">제품 상태: {{ item.product_state }}</h5>
         <h5 class="card-process-address">주소: {{ item.address }}</h5>
         <h6 class="card-subtitle mb-2 text-body-secondary" style="margin-top: 40px; font-size: 12px;">상품: {{ item.product }}</h6>
-        <img v-if="item.imageUrl" :src="item.imageUrl" alt="Product Image" style="width: 120px; height: auto; margin-top: 10px">
+        <img :src="imageUrl" alt="Product Image" style="width: 120px; height: auto; margin-top: 10px">
         <h6 class="card-process-category">카테고리: {{ item.category }}</h6>
         <p class="card-process-reason">판매 이유: {{ item.reason }}</p>
         <p class="card-process-price">가격: {{ item.price }}원</p>
@@ -50,6 +50,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {processCardBody} from "@/components/card/gsap/card-body-animation";
 import {requestProcessCardSendData} from "@/components/api/process-card-body";
 
+
 export default {
   data() {
     return {
@@ -86,6 +87,7 @@ export default {
       type: Array,
       required: true,
     },
+    imageUrl: String,
   },
   methods: {
     openChatModal(productId) {

@@ -138,6 +138,7 @@ export default {
       try {
         await uploadBytes(mountainsRef, file);
         this.imageUrl = await getDownloadURL(mountainsRef);
+        this.$emit('image-uploaded', this.imageUrl);
       } catch (error) {
         console.log(error);
       }
@@ -149,12 +150,11 @@ export default {
       const product = document.getElementById('product').value;
       const category = document.getElementById('category').value;
       const reason = document.getElementById('reason').value;
+      const product_image = document.getElementById('product_image').value;
       const product_state = document.getElementById('product_state').value;
       const product_status = document.getElementById('product_status').value;
       const price = document.getElementById('price').value;
       const todayDate = document.getElementById('todayDate').value;
-
-      const imageUrl = this.imageUrl;
 
       const itemData = {
         id,
@@ -162,7 +162,7 @@ export default {
         product,
         category,
         reason,
-        imageUrl,
+        product_image,
         product_state,
         product_status,
         price,
