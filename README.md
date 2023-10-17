@@ -14,7 +14,7 @@
 <br>
 
 ### Frontend
-> Vue.js, Ionic, Scss
+> Vue.js
 
 <br>
 
@@ -29,7 +29,7 @@
 <br>
 
 ### Chatting Service
-> Node.js, Socket.io
+> Node.js, WebSocket
 
 <br>
 
@@ -39,7 +39,7 @@
 <br>
 
 ### Library
-> Vue-router, Vue-Dialog, VueX, Axios, Gsap
+> Vue-router, Vue-Dialog, VueX, Axios, Gsap, Ionic
 
 <br>
 
