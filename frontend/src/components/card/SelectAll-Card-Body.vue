@@ -31,7 +31,7 @@
     </div>
   </div>
 
-  <div class="pagination-controls">
+  <div class="pagination-controls" style="margin-bottom: 40px;">
     <button style="margin-left: 34px;" class="btn btn-primary" @click="prevPage">이전</button>
     <span style="margin-left: 20px; margin-right: 20px;"> {{ pageNum }} of {{ totalPages }}</span>
     <button class="btn btn-primary" @click="nextPage">다음</button>
@@ -205,10 +205,15 @@ export default {
     filteredCardData() {
       console.log(this.searchProduct)
 
+      let filteredData = this.cardData.filter(item => {
+        return item.product.includes(this.searchProduct);
+      });
+
       const start = (this.pageNum - 1) * this.pageSize;
       const end = start + this.pageSize;
+      filteredData = filteredData.slice(start, end);
 
-      return this.cardData.slice(start, end);
+      return filteredData;
     },
 
     totalPages() {
