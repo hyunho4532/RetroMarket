@@ -1,0 +1,91 @@
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  #card-finish-container {
+    width: 20rem;
+    height: 28rem;
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+  }
+
+  .card-body {
+    .card-finish-product-status {
+      color: royalblue;
+      font-size: 18px;
+    }
+
+    .card-finish-address {
+      margin-top: 40px;
+      font-size: 14px;
+    }
+
+    .card-finish-product {
+      margin-top: 40px;
+      font-size: 12px;
+    }
+
+    .card-finish-category {
+      margin-top: 12px;
+      font-size: 12px;
+    }
+
+    .card-finish-reason {
+      margin-top: 30px;
+      font-size: 14px;
+      color: blue;
+    }
+
+    .card-finish-price {
+      margin-top: 20px;
+      font-size: 12px;
+    }
+  }
+
+  .card-finish-date {
+    text-align: end;
+    margin-right: 10px;
+    font-size: 12px;
+  }
+
+  .card-finish-interest {
+    display: flex;
+    justify-items: end;
+    justify-content: end;
+    margin-bottom: 20px;
+
+    .card-finish-interest-button {
+      color: black;
+      border: none;
+      background: none;
+      font-size: 10px;
+    }
+
+    .card-finish-interest-text {
+      text-align: end;
+      margin-right: 10px;
+      margin-top: 16px;
+      font-size: 12px;
+    }
+  }
+
+  .card-finish-chat-or-delete {
+    display: flex;
+    text-align: end;
+    justify-content: end;
+  }
+
+  .card-finish-chat-text {
+    text-align: end;
+    margin-right: 10px;
+    color: royalblue;
+  }
+
+  .card-finish-delete-text {
+    text-align: end;
+    margin-right: 10px;
+    color: red;
+  }
+}
