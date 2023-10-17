@@ -14,7 +14,7 @@
 <br>
 
 ### Frontend
-> Vue.js
+> Vue.js, Ionic, Scss
 
 <br>
 
