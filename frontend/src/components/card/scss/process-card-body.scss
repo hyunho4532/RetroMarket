@@ -1,0 +1,91 @@
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+
+  #process-card-container {
+    width: 20rem;
+    height: 28rem;
+    margin-top: 30px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+  }
+
+  .card-body {
+
+    .card-process-product-status {
+      color: royalblue;
+      font-size: 18px;
+    }
+
+    .card-process-product-state {
+      color: cornflowerblue;
+      font-size: 16px;
+    }
+
+    .card-process-address {
+      margin-top: 40px;
+      font-size: 14px;
+    }
+
+    .card-process-category {
+      margin-top: 12px;
+      font-size: 12px;
+    }
+
+    .card-process-reason {
+      margin-top: 30px;
+      font-size: 14px;
+      color: blue;
+    }
+
+    .card-process-price {
+      margin-top: 20px;
+      font-size: 12px;
+    }
+  }
+
+  .card-process-date {
+    text-align: end;
+    margin-right: 10px;
+    font-size: 12px;
+  }
+
+  .card-process-interest {
+    display: flex;
+    justify-items: end;
+    justify-content: end;
+    margin-bottom: 20px;
+
+    .card-process-interest-button {
+      color: black;
+      border: none;
+      background: none;
+      font-size: 10px;
+    }
+
+    .card-process-interest-text {
+      text-align: end;
+      margin-right: 10px;
+      margin-top: 16px;
+      font-size: 12px;
+    }
+  }
+
+  .card-process-chat-or-delete {
+    display: flex;
+    text-align: end;
+    justify-content: end;
+  }
+
+  .card-process-chat-text {
+    text-align: end;
+    margin-right: 10px;
+    color: royalblue;
+  }
+
+  .card-process-delete-text {
+    text-align: end;
+    margin-right: 10px;
+    color: red;
+  }
+}
