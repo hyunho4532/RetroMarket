@@ -27,6 +27,10 @@
           <p class="card-process-chat-text" v-if="isUserLoggedIn && currentUserUid" @click="openChatModal(item.id)">채팅하기</p>
           <p class="card-process-delete-text" v-if="isUserLoggedIn" @click="deleteChatModal(item.id)">삭제</p>
         </div>
+
+        <div class="card-process-declaration">
+          <p class="card-process-declaration-text" v-if="isUserLoggedIn && currentUserUid" @click="openDeclarationModal(item.id)">신고하기</p>
+        </div>
       </div>
     </div>
   </div>
@@ -36,6 +40,10 @@
     <span style="margin-left: 20px; margin-right: 20px;"> {{ pageNum }} of {{ totalPages }}</span>
     <button class="btn btn-primary" @click="nextPage">다음</button>
   </div>
+
+  <ProductDeclarationDialog ref="productDeclarationDialog">
+    <button @click="closeDeclarationModal">닫기</button>
+  </ProductDeclarationDialog>
 
   <ProductDetailDialog ref="productDetailDialog" @mark-as-sold="markItemAsSold" :address="cardData.address" :interest="cardData.interestValues" :itemid="cardData.id">
     <button @click="closeProductDetailModal">닫기</button>
@@ -50,6 +58,7 @@
 import axios from 'axios';
 import ChatDialog from "@/components/chat/dialog/Chat-Dialog.vue";
 import ProductDetailDialog from "@/components/products/detail/Product-Detail-Dialog.vue";
+import ProductDeclarationDialog from "@/components/products/declaration/Product-Declaration-Dialog.vue";
 import { ref, onMounted } from "vue";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import {filteringCardBody} from "@/components/card/gsap/card-body-animation";
@@ -88,6 +97,7 @@ export default {
 
   components: {
     ProductDetailDialog,
+    ProductDeclarationDialog,
     ChatDialog,
   },
   props: {
@@ -135,6 +145,14 @@ export default {
 
     openProductDetailModal(address, interest, itemId) {
       this.$refs.productDetailDialog.openProductDetailModal(address, interest, itemId);
+    },
+
+    openDeclarationModal(productId) {
+      this.$refs.productDeclarationDialog.openModal(productId);
+    },
+
+    closeDeclarationModal() {
+      this.$refs.productDeclarationDialog.closeModal();
     },
 
     closeProductDetailModal() {

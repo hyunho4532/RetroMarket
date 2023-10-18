@@ -4,7 +4,7 @@
 
   #process-card-container {
     width: 20rem;
-    height: 28rem;
+    height: 30rem;
     margin-top: 30px;
     margin-left: 30px;
     margin-bottom: 20px;
@@ -79,6 +79,18 @@
   }
 
   .card-process-delete-text {
+    text-align: end;
+    margin-right: 10px;
+    color: red;
+  }
+
+  .card-process-declaration {
+    display: flex;
+    text-align: end;
+    justify-content: end;
+  }
+
+  .card-process-declaration-text {
     text-align: end;
     margin-right: 10px;
     color: red;
