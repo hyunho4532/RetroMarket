@@ -16,7 +16,27 @@
             <label for="exampleFormControlInput1" class="form-label">신고 날짜</label>
             <input type="text" class="form-control" v-model="currentTime" name="todayDate" id="todayDate" readonly="readonly">
           </div>
+
+          <div class="mb-3" style="margin-top: 60px;">
+            <label for="exampleFormControlInput2" class="form-label">해당 게시글을 신고하는 이유를 알려주세요~!</label>
+          </div>
         </div>
+
+        <div class="container text-center" style="margin-bottom: 80px;">
+          <select id="selectDeclaration" class="form-select" aria-label="Default select example">
+            <option selected>신고 사유</option>
+            <option value="부적절한 제목/내용">부 적절한 제목/내용</option>
+            <option value="사기">사기</option>
+            <option value="거래 / 환불 싸움">거래 / 환불 싸움</option>
+            <option value="기타 사항">기타 사항</option>
+          </select>
+        </div>
+
+        <div v-if="document.querySelector('#selectDeclaration').val().equals('기타 사항')" class="mb-3" style="margin-top: 40px;">
+          <label for="exampleFormControlInput1" class="form-label">기타 사항 내용 작성</label>
+          <textarea type="text" class="form-control" />
+        </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="closeModal">닫기</button>
           <button type="button" class="btn btn-primary" @click="registerItem">물품 신고하기</button>
@@ -54,6 +74,7 @@ export default {
       address: "",
       selectedCategory: "",
       productId: "",
+      etcValue: "",
     };
   },
 
