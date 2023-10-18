@@ -23,6 +23,11 @@
 
 <br>
 
+### main-page-gsap 브렌치
+> main-page gsap 애니메이션 연동 및 구현
+
+<br>
+
 ### Tool
 > intellij
 
