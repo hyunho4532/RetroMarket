@@ -14,7 +14,12 @@
 <br>
 
 #### main-page-ui 브렌치
-> 메인 페이지 UI 
+> 메인 페이지 UI
+
+<br>
+
+#### main-page-ui-v2 브렌치
+> 기존 main-pageui 브렌치 -> v2.0 업데이트
 
 <br>
 
