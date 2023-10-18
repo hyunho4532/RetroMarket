@@ -23,17 +23,17 @@
 
 <br>
 
-### main-page-gsap 브렌치
+#### main-page-gsap 브렌치
 > main-page gsap 애니메이션 연동 및 구현
 
 <br>
 
-### main-product-paging-source 브렌치
+#### main-product-paging-source 브렌치
 > 중고 거래에서 페이징 처리 구현
 
 <br>
 
-### main-product-filtering-source 브렌치
+#### main-product-filtering-source 브렌치
 > 중고 거래에서 주소 필터링 처리 구현
 
 <br>
