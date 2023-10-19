@@ -44,10 +44,11 @@
 import axios from 'axios';
 import ChatDialog from "@/components/chat/dialog/Chat-Dialog.vue";
 import ProductDetailDialog from "@/components/products/detail/Product-Detail-Dialog.vue";
-import { ref, onMounted } from "vue";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { ref } from "vue";
+import { getAuth } from "firebase/auth";
 import {processCardBody} from "@/components/card/gsap/card-body-animation";
 import {requestProcessCardSendData} from "@/components/api/process-card-body";
+import {useAuth} from "@/components/card/ref/onMounted";
 
 export default {
   data() {
@@ -63,17 +64,7 @@ export default {
 
     const auth = getAuth();
 
-    onMounted(() => {
-      onAuthStateChanged(auth, (user) => {
-        isUserLoggedIn.value = !!user;
-        currentUserUid.value = user ? user.uid : null;
-      });
-    });
-
-    return {
-      isUserLoggedIn,
-      currentUserUid
-    }
+    useAuth(auth, isUserLoggedIn, currentUserUid);
   },
 
   components: {
