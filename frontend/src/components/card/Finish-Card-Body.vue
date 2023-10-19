@@ -25,7 +25,7 @@
 
         <div class="card-finish-chat-or-delete">
           <p style="text-align: end; margin-right: 10px; color: royalblue;" @click="openChatModal(item.id)">채팅하기</p>
-          <p v-if="isUserLoggedIn" style="text-align: end; margin-right: 10px; color: red;" @click="deleteChatModal(item.id)">삭제</p>
+          <p v-if="isUserLoggedIn && currentUserUid === item.uid" style="text-align: end; margin-right: 10px; color: red;" @click="deleteChatModal(item.id)">삭제</p>
         </div>
       </div>
     </div>
@@ -58,17 +58,20 @@ export default {
 
   setup() {
     const isUserLoggedIn = ref(false);
+    const currentUserUid = ref(null);
 
     const auth = getAuth();
 
     onMounted(() => {
       onAuthStateChanged(auth, (user) => {
         isUserLoggedIn.value = !!user;
+        currentUserUid.value = user ? user.uid : null;
       });
     });
 
     return {
-      isUserLoggedIn
+      isUserLoggedIn,
+      currentUserUid
     }
   },
 

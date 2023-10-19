@@ -25,7 +25,7 @@
 
         <div style="display: flex; justify-content: end; text-align: end">
           <p v-if="isUserLoggedIn && currentUserUid" style="text-align: end; margin-right: 10px; color: royalblue;" @click="openChatModal(item.id)">채팅하기</p>
-          <p v-if="isUserLoggedIn" style="text-align: end; margin-right: 10px; color: red;" @click="deleteChatModal(item.id)">삭제</p>
+          <p v-if="isUserLoggedIn && currentUserUid === item.uid" style="text-align: end; margin-right: 10px; color: red;" @click="deleteChatModal(item.id)">삭제</p>
         </div>
       </div>
     </div>
@@ -72,7 +72,7 @@ export default {
 
     return {
       isUserLoggedIn,
-      currentUserUid
+      currentUserUid,
     }
   },
 

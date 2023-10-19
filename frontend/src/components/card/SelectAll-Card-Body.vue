@@ -29,7 +29,7 @@
         </div>
 
         <div class="card-process-declaration">
-          <p class="card-process-declaration-text" v-if="isUserLoggedIn && currentUserUid" @click="openDeclarationModal(item.id)">신고하기</p>
+          <p class="card-process-declaration-text" v-if="isUserLoggedIn && currentUserUid === item.uid" @click="openDeclarationModal(item.id)">신고하기</p>
         </div>
       </div>
     </div>
