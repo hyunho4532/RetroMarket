@@ -9,6 +9,9 @@ public class Product {
     @Id
     private Long id;
 
+    @Column(length = 300)
+    private String uid;
+
     @Column(length = 1000)
     private String address;  // 주소
 
@@ -37,7 +40,8 @@ public class Product {
 
     }
 
-    public Product(String address, String product_name, String reason, int price, String today_date) {
+    public Product(String uid, String address, String product_name, String reason, int price, String today_date) {
+        this.uid = uid;
         this.address = address;
         this.product_name = product_name;
         this.reason = reason;
@@ -51,6 +55,14 @@ public class Product {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
     // 게터와 세터 메서드

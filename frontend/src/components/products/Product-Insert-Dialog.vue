@@ -93,6 +93,7 @@ import axios from "axios";
 import KaKaoMap from "@/components/api/KaKaoMap.vue";
 import {getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage";
 import gsap from "gsap";
+import { getAuth } from "firebase/auth";
 
 const storage = getStorage();
 
@@ -137,6 +138,11 @@ export default {
     },
 
     registerItem() {
+      const auth = getAuth();
+
+      const currentUser = auth.currentUser;
+
+      const uid = currentUser.uid.toString();
       const id = document.getElementById('id').value;
       const address = document.getElementById('address').value;
       const product = document.getElementById('product').value;
@@ -150,6 +156,7 @@ export default {
 
       const itemData = {
         id,
+        uid,
         address,
         product,
         category,

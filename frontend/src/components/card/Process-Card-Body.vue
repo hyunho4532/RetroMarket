@@ -25,7 +25,7 @@
 
         <div class="card-process-chat-or-delete">
           <p class="card-process-chat-text" v-if="isUserLoggedIn && currentUserUid" @click="openChatModal(item.id)">채팅하기</p>
-          <p class="card-process-delete-text" v-if="isUserLoggedIn" @click="deleteChatModal(item.id)">삭제</p>
+          <p class="card-process-delete-text" v-if="isUserLoggedIn && currentUserUid && currentUserUid === item.uid" @click="deleteChatModal(item.id)">삭제</p>
         </div>
       </div>
     </div>
